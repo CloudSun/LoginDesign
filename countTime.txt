@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        var canvas;
+        var ctx;
+        var Number;
+        var RushInterval;
+        function init() {
+            //clock();
+            Number = 10
+            ctx = document.getElementById('canvas').getContext('2d');
+            Time1 = setInterval(CountDown, 1000);
+
+        }
+
+        function CountDown() {
+
+            // angel = Math.PI / 180;
+            if (Number == 0) {
+                clearInterval(Time1);
+            }
+            ctx.clearRect(0, 0, 800, 800);
+            ctx.save();
+            //Draw Circle(OutSide)
+            ctx.beginPath();
+            ctx.arc(300, 300, 120, 0, Math.PI * 2, true);
+            ctx.fillStyle = "#aaa";
+            ctx.fill();
+            ctx.closePath();
+            //Draw Cicle(InSide)
+            ctx.beginPath();
+            ctx.arc(300, 300, 100, 0, Math.PI * 2, true);
+            ctx.fillStyle = "#000";
+            ctx.fill();
+            ctx.closePath();
+            //Right the Number
+            ctx.beginPath();
+            ctx.font = '130px Arial';
+            ctx.fillStyle = '#fff';
+            ctx.fillText(Number, 265, 345);
+            ctx.fill();
+            ctx.closePath();
+            Angle = Math.PI / 2;
+            RushInterval = setInterval(RushTime, 1000 / 60);
+            ctx.restore();
+            Number--;
+        }
+
+        function RushTime() {
+            ctx.save();
+            ctx.beginPath();
+            Angle += Math.PI * 2 / 60;
+            ctx.moveTo(300, 300);
+            ctx.arc(300, 300, 120, Math.PI / 2, Angle, false);
+            ctx.lineTo(300, 300);
+            ctx.fillStyle = "#fff";
+            ctx.fill();
+            ctx.closePath();
+            if (Angle > Math.PI * 2 + Math.PI / 2) {
+                clearInterval(RushInterval);
+            }
+        }
+        function draw2() {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var r = 0;
+            var angle = 0
+            // ctx.moveTo(270, 250);
+            /*do {
+            angle += Math.PI / 360;
+            cos = Math.cos(angle);
+            sin = Math.sin(angle);
+            r += 0.1;
+
+            ctx.lineTo(270 + (cos * r + sin * r), (cos * r - sin * r) + 250);
+            //  ctx.lineTo(270, 250);
+
+            // ctx.moveTo(270 + (cos * r + sin * r), (cos * r - sin * r) + 250);
+            //   ctx.strokeStyle = " rgba(255,255,255," + r * 10 + ")";
+
+            } while (r < 250);
+            */
+            r = 200;
+            ctx.lineWidth = 3;
+
+            var max = 255;
+            var min = 0;
+            var R = max, G = min, B = min;
+            angle = 0 - Math.PI / 360;
+            do {
+                ctx.beginPath();
+                angle += Math.PI / 360
+                cos = Math.cos(angle);
+                sin = Math.sin(angle);
+                ctx.moveTo(500 + (cos * r + sin * r), (cos * r - sin * r) + 300);
+                ctx.lineTo(500, 300);
+                if (R < max && G == min && B == min) {
+                    R++
+                } else if (R == max && G == min && B < max) {
+                    B++
+                } else if (R > min && G == min && B == max) {
+                    R--
+                } else if (R == min && G < max && B == max) {
+                    G++
+                } else if (R == min && G == max && B > min) {
+                    B--
+                } else if (R < max && G == max && B == min) {
+                    R++;
+                } else if (R == max && G > min && B == min) {
+                    G--;
+                }
+                r = 200
+                ctx.strokeStyle = 'rgba(' + R + ', ' + G + ', ' + B + ', 1)';
+                ctx.stroke();
+                ctx.closePath();
+
+            } while (angle < 2 * Math.PI - 2 * Math.PI / 360);
+
+            r = 200;
+            var R = max, G = min, B = min;
+            angle = 0
+            do {
+                ctx.beginPath();
+                angle -= Math.PI / 360;
+                cos = Math.cos(angle);
+                sin = Math.sin(angle);
+                ctx.moveTo(500 + (cos * r + sin * r), (cos * r - sin * r) + 300);
+                ctx.lineTo(500, 300);
+                if (R < max && G == min && B == min) {
+                    R++
+                } else if (R == max && G == min && B < max) {
+                    B++
+                } else if (R > min && G == min && B == max) {
+                    R--
+                } else if (R == min && G < max && B == max) {
+                    G++
+                } else if (R == min && G == max && B > min) {
+                    B--
+                } else if (R < max && G == max && B == min) {
+                    R++;
+                } else if (R == max && G > min && B == min) {
+                    G--;
+                }
+                r -= 0.1;
+                ctx.strokeStyle = 'rgba(' + R + ', ' + G + ', ' + B + ', 1)';
+                ctx.stroke();
+                ctx.closePath();
+            } while (r > 0);
+            var r = 207;
+            var R = max, G = min, B = min;
+            var angle = 0;
+            ctx.lineWidth = 20;
+            angle -= Math.PI / 360;
+            cos = Math.cos(angle);
+            sin = Math.sin(angle);
+            r -= 0.1;
+            ctx.moveTo(500 + (cos * r + sin * r), (cos * r - sin * r) + 300);
+            do {
+                //    ctx.beginPath();
+                angle -= Math.PI / 360;
+                cos = Math.cos(angle);
+                sin = Math.sin(angle);
+                r -= 0.1;
+                ctx.lineTo(500 + (cos * r + sin * r), (cos * r - sin * r) + 300);
+
+                if (R < max && G == min && B == min) {
+                    R++
+                } else if (R == max && G == min && B < max) {
+                    B++
+                } else if (R > min && G == min && B == max) {
+                    R--
+                } else if (R == min && G < max && B == max) {
+                    G++
+                } else if (R == min && G == max && B > min) {
+                    B--
+                } else if (R < max && G == max && B == min) {
+                    R++;
+                } else if (R == max && G > min && B == min) {
+                    G--;
+                }
+
+                //
+
+                //
+            } while (r > 0);
+            ctx.strokeStyle = 'rgba(' + 155 + ', ' + 240 + ', ' + 207 + ', 1)';
+            ctx.stroke();
+
+        }
+        function drawSpirograph(ctx, R, r, O) {
+            var x1 = R - O;
+            var y1 = 0;
+            var i = 1;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            do {
+                if (i > 20000) break;
+                var x2 = (R + r) * Math.cos(i * Math.PI / 72) - (r + O) * Math.cos(((R + r) / r) * (i * Math.PI / 72))
+                var y2 = (R + r) * Math.sin(i * Math.PI / 72) - (r + O) * Math.sin(((R + r) / r) * (i * Math.PI / 72))
+                ctx.lineTo(x2, y2);
+                x1 = x2;
+                y1 = y2;
+                i++;
+            } while (x2 != R - O && y2 != 0);
+            ctx.stroke();
+        }
+
+        angle = 0;
+        function draw() {
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            ctx.save();
+            ctx.translate(150, 150);
+            ctx.clearRect(-100, -100, 500, 500);
+            angle += Math.PI / 90
+            cos = Math.cos(angle);
+            sin = Math.sin(angle);
+            ctx.transform(cos, -sin, sin, cos, 0, 0);
+            ctx.beginPath();
+            ctx.arc(0, 0, 102, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.lineWidth = 4;
+            ctx.fillStyle = '#fff';
+            ctx.strokeStyle = "#ccc";
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(0, 0, 100, 0, Math.PI, true);
+            ctx.closePath();
+            ctx.fillStyle = '#000';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(-50, -1, 50, 0, Math.PI, false);
+            ctx.closePath();
+            ctx.fillStyle = '#000';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(50, 1, 50, 0, Math.PI, true);
+            ctx.closePath();
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(-50, 0, 7, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(50, 0, 7, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fillStyle = '#000';
+            ctx.fill();
+
+            ctx.restore();
+            //            var sin = Math.sin(Math.PI / 4);
+            //            var cos = Math.cos(Math.PI / 4);
+            //            ctx.translate(200, 200);
+            //            var c = 0;
+            //            for (var i = 0; i <= 3; i++) {
+            //                c = Math.floor(255 / 12 * i);
+            //                ctx.fillStyle = "rgb(" + c + "," + c + "," + c + ")";
+            //                ctx.fillRect(0, 0, 100, 10);
+            //                ctx.transform(cos, -sin, sin, cos, 0, 0);
+            //            }
+
+            //            ctx.setTransform(-1, 0, 0, 1, 200, 200);
+            //            ctx.fillStyle = "rgba(255, 128, 255, 0.5)";
+            //            ctx.fillRect(0, 50, 100, 100);
+        }
+        function clock() {
+            var now = new Date();
+            var ctx = document.getElementById('canvas').getContext('2d');
+            ctx.save();
+            ctx.clearRect(0, 0, 150, 150);
+            ctx.translate(75, 75);
+            ctx.scale(0.4, 0.4);
+            ctx.rotate(-Math.PI / 2);
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = "white";
+            ctx.lineWidth = 8;
+            ctx.lineCap = "round";
+
+            // Hour marks
+            ctx.save();
+            for (var i = 0; i < 12; i++) {
+                ctx.beginPath();
+                ctx.rotate(Math.PI / 6);
+                ctx.moveTo(100, 0);
+                ctx.lineTo(120, 0);
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            // Minute marks
+            ctx.save();
+            ctx.lineWidth = 5;
+            for (i = 0; i < 60; i++) {
+                if (i % 5 != 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(117, 0);
+                    ctx.lineTo(120, 0);
+                    ctx.stroke();
+                }
+                ctx.rotate(Math.PI / 30);
+            }
+            ctx.restore();
+
+            var sec = now.getSeconds();
+            var min = now.getMinutes();
+            var hr = now.getHours();
+            hr = hr >= 12 ? hr - 12 : hr;
+
+            ctx.fillStyle = "black";
+
+            // write Hours
+            ctx.save();
+            ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) * sec)
+            ctx.lineWidth = 14;
+            ctx.beginPath();
+            ctx.moveTo(-20, 0);
+            ctx.lineTo(80, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // write Minutes
+            ctx.save();
+            ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            ctx.moveTo(-28, 0);
+            ctx.lineTo(112, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // Write seconds
+            ctx.save();
+            ctx.rotate(sec * Math.PI / 30);
+            ctx.strokeStyle = "#D40000";
+            ctx.fillStyle = "#D40000";
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(-30, 0);
+            ctx.lineTo(83, 0);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(95, 0, 10, 0, Math.PI * 2, true);
+            ctx.stroke();
+            ctx.fillStyle = "#555";
+            ctx.arc(0, 0, 3, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.restore();
+
+            ctx.beginPath();
+            ctx.lineWidth = 14;
+            ctx.strokeStyle = '#325FA2';
+            ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+    </script>
+</head>
+<body onload="init();">
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <!--<div>
+        <img src="picture/11.jpg" style="display: none" />
+        <img src="picture/22.jpg" style="display: none" />
+        <img src="picture/33.jpg" style="display: none" />
+        <img src="picture/banner1.png" id="frame" style="display: none" />
+    </div>-->
+</body>
+</html>
