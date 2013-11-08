@@ -78,7 +78,7 @@
         },400);
         //移动Hover
         $(".FM_Containerhover").animate({
-            top:'-55px'
+            top:'55px'
         },400); 
     }
 

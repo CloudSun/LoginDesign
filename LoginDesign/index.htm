@@ -4,28 +4,12 @@
     <title>LoginDesign</title>
     <link type="text/css" rel="Stylesheet" href="static/css/main.css" />
     <link type="text/css" rel="Stylesheet" href="static/css/effect.css" />
-    <script type="text/javascript" src="static/js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="static/js/main.js"></script>
+    
     <!-- Create 1108 check in-->
 </head>
 <body>
     <div id="showText" style="font-size:30px;"></div>
     <div id="MainContainer">
-        <div class="CircleZoom">
-            <input type="text" value="Input Your Name" id="UserName"/>
-            <div  id="LoginBtn">LOGIN</div>
-         </div>
-        <div class="CircleOut">
-        </div>
-        <div class="CircleIn">
-        </div>
-        <div id="BaselineCircle">
-            <div id="BaselineMainContainer">
-                <div id="FMArrowContainer">
-                    <div class="FirstMenuArrowUp"></div>
-                </div>
-            </div>
-        </div>
         <div id="MainMenu">
             <ul id="FirstMenuUL">
                 <li class="FirstClassLi menuSelected" menu="1" type="honeycomb">
@@ -125,13 +109,32 @@
                         </ul>
                     </div>
             </div>
-
-            
         </div>
 
-        
-        
-    </div>
+        <!-- Page Section -->
+        <!-- Login -->
+        <section id="Login">
+            <div class="CircleZoom">
+                <input type="text" value="Input Your Name" id="UserName"/>
+                <div  id="LoginBtn">LOGIN</div>
+            </div>
+            <div class="CircleOut">
+            </div>
+            <div class="CircleIn">
+            </div>
+            <div id="BaselineCircle">
+                <div id="BaselineMainContainer">
+                    <div id="FMArrowContainer">
+                        <div class="FirstMenuArrowUp"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+    </div><!-- MainContainer -->
+
+    <!-- load js delay --> 
+    <script type="text/javascript" src="static/js/plugin/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="static/js/main.js"></script>
 </body>
 </html>
